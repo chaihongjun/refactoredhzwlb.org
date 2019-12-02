@@ -1,7 +1,7 @@
 <!--
  * @Author: ChaiHongJun
  * @Date: 2019-11-27 10:49:14
- * @LastEditTime: 2019-11-28 11:56:22
+ * @LastEditTime: 2019-12-02 17:08:00
  * @LastEditors: ChaiHongJun
  * @Description: 头部文件注释
  -->
@@ -34,23 +34,31 @@ import Sidebar from "@/components/Sidebar.vue";
 import Articles from "@/components/Article.vue";
 export default {
   name: "Frontend",
-  data() {
-    return {
-      articles: [],
-      sidebars: []
-    };
+  // data() {
+  //   return {
+  //     articles: [],
+  //     sidebars: []
+  //   };
+  // },
+  computed: {
+    articles() {
+      return this.$store.state.frontendData;
+    },
+    sidebars() {
+      return this.$store.state.sidebarData;
+    }
   },
   created() {
     this.$store.dispatch("loadFrontEndData");
     this.$store.dispatch("loadSidebarData");
     console.log("frontend created");
   },
-  mounted() {
-    this.articles = this.$store.state.frontendData;
-    this.sidebars = this.$store.state.sidebarData;
-    console.log(this.articles);
-    console.log(this.sidebars);
-  },
+  // mounted() {
+  //   this.articles = this.$store.state.frontendData;
+  //   this.sidebars = this.$store.state.sidebarData;
+  //   console.log(this.articles);
+  //   console.log(this.sidebars);
+  // },
   activated() {
     this.$store.dispatch("loadFrontEndData");
     this.$store.dispatch("loadSidebarData");

@@ -1,7 +1,7 @@
 <!--
  * @Author: ChaiHongJun
  * @Date: 2019-11-27 10:49:52
- * @LastEditTime: 2019-11-28 17:43:19
+ * @LastEditTime: 2019-12-02 17:08:39
  * @LastEditors: ChaiHongJun
  * @Description: 头部文件注释
  -->
@@ -146,10 +146,15 @@ import Footer from "@/components/Footer.vue";
 
 export default {
   name: "Detail",
-  data() {
-    return {
-      sidebars: []
-    };
+  // data() {
+  //   return {
+  //     sidebars: []
+  //   };
+  // },
+  computed: {
+    sidebars() {
+      return this.$store.state.sidebarData;
+    }
   },
   components: {
     Header,
@@ -161,9 +166,9 @@ export default {
   created() {
     this.$store.dispatch("loadSidebarData");
   },
-  mounted() {
-    this.sidebars = this.$store.state.sidebarData;
-  },
+  // mounted() {
+  //   this.sidebars = this.$store.state.sidebarData;
+  // },
   activated() {
     //发起数据请求
     this.$store.dispatch("loadSidebarData");

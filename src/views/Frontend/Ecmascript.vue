@@ -1,7 +1,7 @@
 <!--
  * @Author: ChaiHongJun
  * @Date: 2019-11-27 10:49:22
- * @LastEditTime: 2019-11-28 11:56:33
+ * @LastEditTime: 2019-12-02 17:07:12
  * @LastEditors: ChaiHongJun
  * @Description: 头部文件注释
  -->
@@ -34,23 +34,31 @@ import Sidebar from "@/components/Sidebar";
 import Articles from "@/components/Article";
 export default {
   name: "Ecmascript",
-  data() {
-    return {
-      articles: [],
-      sidebars: []
-    };
-  },
+  // data() {
+  //   return {
+  //     articles: [],
+  //     sidebars: []
+  //   };
+  // },
   created() {
     this.$store.dispatch("loadEcmaScriptData");
     this.$store.dispatch("loadSidebarData");
     console.log("Ecmascript created");
   },
-  mounted() {
-    this.articles = this.$store.state.ecmascriptData;
-    this.sidebars = this.$store.state.sidebarData;
-    console.log(this.articles);
-    console.log(this.sidebars);
+  computed: {
+    articles() {
+      return this.$store.state.ecmascriptData;
+    },
+    sidebars() {
+      return this.$store.state.sidebarData;
+    }
   },
+  // mounted() {
+  //   this.articles = this.$store.state.ecmascriptData;
+  //   this.sidebars = this.$store.state.sidebarData;
+  //   console.log(this.articles);
+  //   console.log(this.sidebars);
+  // },
   activated() {
     this.$store.dispatch("loadEcmaScriptData");
     this.$store.dispatch("loadSidebarData");

@@ -1,7 +1,7 @@
 /*
  * @Author: ChaiHongJun
  * @Date: 2019-11-27 09:53:01
- * @LastEditTime: 2019-11-28 17:58:10
+ * @LastEditTime: 2019-11-29 16:57:30
  * @LastEditors: ChaiHongJun
  * @Description: 头部文件注释
  */
@@ -43,7 +43,6 @@ export default new Vuex.Store({
       Request("/loadHomeData")
         .then(res => {
           context.commit("loadHomeData", res.data.articles);
-          //console.log(res.data);
         })
         .catch(err => {
           console.log(err);
@@ -53,7 +52,6 @@ export default new Vuex.Store({
       Request("/loadSidebarData")
         .then(res => {
           context.commit("loadSidebarData", res.data.articles);
-          //console.log(res.data);
         })
         .catch(err => {
           console.log(err);
@@ -63,7 +61,6 @@ export default new Vuex.Store({
       Request("/loadAboutData")
         .then(res => {
           context.commit("loadAboutData", res.data.about.body);
-          //console.log(res.data.about.body);
         })
         .catch(err => {
           console.log(err);
@@ -73,7 +70,6 @@ export default new Vuex.Store({
       Request("/loadFrontEndData")
         .then(res => {
           context.commit("loadFrontEndData", res.data.articles);
-          //console.log(res.data.about.body);
         })
         .catch(err => {
           console.log(err);
@@ -83,7 +79,6 @@ export default new Vuex.Store({
       Request("/loadEcmaScriptData")
         .then(res => {
           context.commit("loadEcmaScriptData", res.data.articles);
-          //console.log(res.data.about.body);
         })
         .catch(err => {
           console.log(err);
@@ -93,7 +88,6 @@ export default new Vuex.Store({
       Request("/loadTypeScriptData")
         .then(res => {
           context.commit("loadTypeScriptData", res.data.articles);
-          //console.log(res.data.about.body);
         })
         .catch(err => {
           console.log(err);

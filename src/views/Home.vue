@@ -1,12 +1,12 @@
 <!--
  * @Author: ChaiHongJun
  * @Date: 2019-11-27 09:53:01
- * @LastEditTime: 2019-11-28 17:44:51
+ * @LastEditTime: 2019-12-02 18:15:15
  * @LastEditors: ChaiHongJun
  * @Description: 头部文件注释
  -->
 <template>
-  <div>
+  <div id="home">
     <Header></Header>
 
     <Search></Search>
@@ -39,6 +39,7 @@
           </div>
 
           <Articles v-for="(item,index) in articles" :key="index" :item="item"></Articles>
+          <infinite-loading @infinite="infiniteHandler"></infinite-loading>
         </div>
       </div>
       <sidebar :sidebars="sidebars"></sidebar>
@@ -60,34 +61,43 @@ import Banner from "@/components/Banner.vue";
 
 import Articles from "@/components/Article.vue";
 
+// 无限加载组件
+import InfiniteLoading from "vue-infinite-loading";
+
 export default {
   name: "Home",
-  data() {
-    return {
-      articles: [],
-      sidebars: []
-    };
-  },
-
-  created() {
+  // data() {
+  //   return {
+  //     articles: [],
+  //     sidebars: []
+  //   };
+  // },
+  beforeMount() {
     //发起数据请求
+    console.log(this);
     this.$store.dispatch("loadHomeData");
     this.$store.dispatch("loadSidebarData");
   },
-  mounted() {
-    this.articles = this.$store.state.homeData;
-    this.sidebars = this.$store.state.sidebarData;
-    // console.log(this.articles);
-    // console.log(this.sidebars);
+  computed: {
+    articles() {
+      return this.$store.state.homeData;
+    },
+    sidebars() {
+      return this.$store.state.sidebarData;
+    }
   },
+  // mounted() {
+  //   this.articles = this.$store.state.homeData;
+  //   this.sidebars = this.$store.state.sidebarData;
+
+  //   console.log(this.articles);
+  // },
   activated() {
     //发起数据请求
     this.$store.dispatch("loadHomeData");
     this.$store.dispatch("loadSidebarData");
     this.articles = this.$store.state.homeData;
     this.sidebars = this.$store.state.sidebarData;
-    // console.log(this.articles);
-    // console.log(this.sidebars);
   },
 
   components: {
@@ -96,7 +106,11 @@ export default {
     Sidebar,
     Footer,
     Banner,
-    Articles
+    Articles,
+    InfiniteLoading
+  },
+  methods: {
+    infiniteHandler($state) {}
   }
 };
 </script>
